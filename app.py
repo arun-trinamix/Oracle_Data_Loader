@@ -4,6 +4,9 @@ from openpyxl import load_workbook
 import os
 import zipfile
 
+from oracle_api import ( get_planners,test_erp_integration,upload_fbdi_zip)
+
+
 app = Flask(__name__)
 LOGS = []
 def add_log(message):
@@ -465,6 +468,47 @@ def validate():
 
 # ---------------- Run ---------------- #
 
+@app.route("/test_oracle")
+def test_oracle():
+
+    response = get_planners()
+
+    if response.status_code == 200:
+
+        data = response.json()
+
+        planners = data.get("items", [])
+
+        html = "<h2>Oracle Connection Successful ✅</h2>"
+
+        html += "<table border='1' cellpadding='8'>"
+
+        html += "<tr><th>Planner Code</th><th>Description</th></tr>"
+
+        for planner in planners[:20]:
+
+            html += (
+                f"<tr>"
+                f"<td>{planner.get('PlannerCode','')}</td>"
+                f"<td>{planner.get('Description','')}</td>"
+                f"</tr>"
+            )
+
+        html += "</table>"
+
+        return html
+
+    return f"<h2>Oracle Error : {response.status_code}</h2><pre>{response.text}</pre>"
+
+@app.route("/upload_to_oracle", methods=["POST"])
+def upload_to_oracle():
+
+    response = test_erp_integration()
+    return f"""
+    <h2>ERP Integration Test</h2>
+    <p>Status Code : {response.status_code}</p>
+    <pre>{response.text}</pre>
+    """
 
 if __name__ == "__main__":
     app.run(host="127.0.0.1", port=5000, debug=False)
