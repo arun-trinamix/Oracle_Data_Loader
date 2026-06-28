@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Oracle Fusion Data Loader</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/style.css') }}">
+
+</head>
+
+<body>
+
+<div class="container">
+
+    <header>
+        <h1>Oracle Fusion Data Loader</h1>
+        <p>Enterprise Data Migration & FBDI Automation Platform</p>
+    </header>
+
+    <div class="card">
+
+        <h2>Configuration</h2>
+
+        <label>Module</label>
+
+        <select>
+            <option>Planner</option>
+            <option>Items</option>
+            <option>Organizations</option>
+            <option>Customers</option>
+            <option>Suppliers</option>
+        </select>
+
+        <br><br>
+
+        <label>Source</label>
+
+        <div class="radio-group">
+            <label><input type="radio" name="source"> Excel</label>
+            <label><input type="radio" name="source"> CSV</label>
+            <label><input type="radio" name="source"> SQL Server</label>
+            <label><input type="radio" name="source"> Oracle Database</label>
+        </div>
+
+        <br>
+
+        <form action="/preview" method="POST" enctype="multipart/form-data">
+
+<label>Choose File</label>
+
+<input type="file" name="file" required>
+
+<br><br>
+
+<button type="submit" class="primary-btn">Preview</button>
+
+</form>
+
+    </div>
+    {% if table %}
+
+<div class="card">
+
+    <h2>Data Preview</h2>
+
+    <p><b>Rows:</b> {{ rows }}</p>
+
+    <p><b>Columns:</b> {{ columns }}</p>
+
+    {{ table|safe }}
+
+</div>
+
+<div class="card">
+
+    <h2>Auto Column Mapping</h2>
+
+    <table>
+        <tr>
+            <th>Source Column</th>
+            <th>Oracle Column</th>
+        </tr>
+
+        {% for source, oracle in mapping.items() %}
+        <tr>
+            <td>{{ source }}</td>
+            <td>{{ oracle }}</td>
+        </tr>
+        {% endfor %}
+
+    </table>
+
+</div>
+
+{% endif %}
+
+{% if status %}
+
+<div class="card">
+
+    <h2>Status</h2>
+
+    <p>{{ status|safe }}</p>
+
+</div>
+
+{% endif %}
+
+    <div class="card">
+
+        <h2>Actions</h2>
+
+        <form action="/validate" method="POST">
+    <button type="submit" class="success-btn">
+        Validate
+         </button>
+        </form>
+
+        <form action="/generate_fbdi" method="POST">
+            <button type="submit" class="warning-btn">
+              Generate FBDI
+          </button>
+       </form>
+
+        <button class="oracle-btn">Upload to Oracle</button>
+
+    </div>
+
+    <div class="card">
+
+        <h2>Logs</h2>
+
+        <div class="logs">
+
+{% if logs %}
+
+    {% for log in logs %}
+
+        {{ log }}<br>
+
+    {% endfor %}
+
+{% else %}
+
+    ✔ Application Started...
+
+{% endif %}
+
+</div>
+
+    </div>
+
+</div>
+
+</body>
+
+</html>

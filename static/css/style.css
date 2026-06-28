@@ -1,0 +1,170 @@
+# -*- coding: utf-8 -*-
+"""
+Created on Fri Jun 26 13:47:09 2026
+
+@author: ArunPati
+"""
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:"Segoe UI",sans-serif;
+}
+
+body{
+
+    background:#eef2f7;
+
+}
+
+.container{
+
+    width:85%;
+    margin:40px auto;
+
+}
+
+header{
+
+    background:linear-gradient(135deg,#003366,#0066cc);
+    color:white;
+    padding:25px;
+    border-radius:12px;
+    box-shadow:0 4px 12px rgba(0,0,0,.2);
+    margin-bottom:25px;
+
+}
+
+header p{
+
+    margin-top:8px;
+    opacity:.9;
+
+}
+
+.card{
+
+    background:white;
+    margin-bottom:20px;
+    padding:25px;
+    border-radius:10px;
+    box-shadow:0 3px 10px rgba(0,0,0,.12);
+
+}
+
+h2{
+
+    color:#003366;
+    margin-bottom:15px;
+    border-left:5px solid #0066cc;
+    padding-left:10px;
+
+}
+
+label{
+
+    font-weight:bold;
+
+}
+
+select,
+input[type=file]{
+
+    width:100%;
+    padding:10px;
+    margin-top:8px;
+    border:1px solid #ccc;
+    border-radius:6px;
+
+}
+
+.radio-group{
+
+    margin-top:10px;
+
+}
+
+.radio-group label{
+
+    margin-right:20px;
+    font-weight:normal;
+
+}
+
+button{
+
+    padding:10px 20px;
+    border:none;
+    border-radius:6px;
+    color:white;
+    cursor:pointer;
+    margin-right:10px;
+    margin-top:10px;
+    transition:.3s;
+
+}
+
+button:hover{
+
+    transform:scale(1.05);
+
+}
+
+.primary-btn{
+
+    background:#007bff;
+
+}
+
+.success-btn{
+
+    background:#28a745;
+
+}
+
+.warning-btn{
+
+    background:#ff9800;
+
+}
+
+.oracle-btn{
+
+    background:#d32f2f;
+
+}
+
+table{
+
+    width:100%;
+    border-collapse:collapse;
+
+}
+
+table th{
+
+    background:#003366;
+    color:white;
+    text-align:left;
+    padding:12px;
+
+}
+
+table td{
+
+    padding:12px;
+    border:1px solid #ddd;
+
+}
+
+.logs{
+
+    background:#1e1e1e;
+    color:#00ff66;
+    padding:15px;
+    border-radius:6px;
+    font-family:Consolas,monospace;
+
+}
+

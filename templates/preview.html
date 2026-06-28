@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <title>Preview</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/style.css') }}">
+
+</head>
+
+<body>
+
+<div class="container">
+
+    <header>
+
+        <h1>Oracle Fusion Data Loader</h1>
+
+        <p>Preview Uploaded Excel</p>
+
+    </header>
+
+    <div class="card">
+
+        <h2>File Summary</h2>
+
+        <p><b>Rows :</b> {{ rows }}</p>
+
+        <p><b>Columns :</b> {{ columns }}</p>
+
+    </div>
+
+    <div class="card">
+
+        <h2>Preview</h2>
+
+        {{ table|safe }}
+
+    </div>
+    
+    <div class="card">
+
+    <h2>Auto Column Mapping</h2>
+
+    <table>
+
+        <tr>
+            <th>Source Column</th>
+            <th>Oracle Column</th>
+        </tr>
+
+        {% for source, oracle in mapping.items() %}
+
+        <tr>
+            <td>{{ source }}</td>
+            <td>{{ oracle }}</td>
+        </tr>
+
+        {% endfor %}
+
+    </table>
+
+</div>
+
+    <div class="card">
+
+        <form action="/validate" method="POST" enctype="multipart/form-data">
+
+            <label>Select the same file for validation</label>
+
+            <br><br>
+
+            <input type="file" name="file" required>
+
+            <br><br>
+
+            <button class="success-btn" type="submit">
+                Validate
+            </button>
+
+        </form>
+
+        <br>
+
+        <a href="/">← Back</a>
+
+    </div>
+
+</div>
+
+</body>
+
+</html>
